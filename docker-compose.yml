@@ -1,3 +1,4 @@
+# docker-compose.yml
 version: "3.9"
 
 services:
@@ -8,7 +9,13 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "5173:5173" # Vite default port
+      - "5173:5173"
     command: npm run dev
     environment:
       - NODE_ENV=development
+    networks:
+      - cftunnel
+
+networks:
+  cftunnel:
+    external: true
