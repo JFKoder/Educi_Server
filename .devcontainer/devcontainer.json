@@ -2,6 +2,9 @@
   "name": "Three.js Dev Container",
   "dockerComposeFile": ["../docker-compose.yml"],
   "service": "app",
+  "mounts": [
+    "source=/mnt/1EXT8T/HOME/janick.koder/DevContainer_Share,target=/usr/src/shared,type=bind"
+  ],
   "workspaceFolder": "/usr/src/app",
   "remoteUser": "node",
   "forwardPorts": [5173],
