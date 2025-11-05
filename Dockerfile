@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y git
 
 # Clone the repository and checkout 'dev' branch
 WORKDIR /tmp
-RUN git clone . /usr/src/app && cd /usr/src/app && git checkout dev
+RUN git clone --branch dev https://github.com/JFKoder/Educi_Server.git /usr/src/app
 
 WORKDIR /usr/src/app
 
