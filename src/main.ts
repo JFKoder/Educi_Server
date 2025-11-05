@@ -13,6 +13,15 @@ document.body.appendChild(renderer.domElement);
 // const material = new THREE.MeshStandardMaterial({ color: 0x007fff });
 // const cube = new THREE.Mesh(geometry, material);
 // scene.add(cube);
+let MainScene: THREE.Object3D | null = null;
+const loader = new GLTFLoader();
+loader.load('Scenes/Main/Main1.glb', (gltf) => {
+  MainScene = gltf.scene;
+  scene.add(MainScene);
+  MainScene.rotation.y = -Math.PI/2; // Rotate MainScene by 180 degrees
+}, undefined, (error) => {
+  console.error('Error loading GLB model:', error);
+});
 
 // Load Earth model
 let earth: THREE.Object3D | null = null;
@@ -59,6 +68,7 @@ textureLoader.load('/textures/Clouds.png', (cloudTexture) => {
     side: THREE.BackSide // Render inside of sphere
   });
   const skySphere = new THREE.Mesh(skyGeometry, skyMaterial);
+  skySphere.rotation.x = 1.2; // Rotate by 180 degrees to move seam
   scene.add(skySphere);
 });
 
@@ -125,12 +135,7 @@ function updateCameraPosition() {
   }
 }
 
-const loader = new GLTFLoader();
-loader.load('Scenes/Main/Main1.glb', (gltf) => {
-  scene.add(gltf.scene);
-}, undefined, (error) => {
-  console.error('Error loading GLB model:', error);
-});
+
 
 // Virtual joypad for touchscreen devices
 function isTouchDevice() {
