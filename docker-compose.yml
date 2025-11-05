@@ -16,7 +16,26 @@ services:
       - NODE_ENV=development
     networks:
       - cftunnel
+      - dbnet
+
+  pgsql:
+    image: postgres:14
+    container_name: pgsql
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: devdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - dbnet
+
+volumes:
+  pgdata:
 
 networks:
   cftunnel:
     external: true
+  dbnet:
+    driver: bridge
