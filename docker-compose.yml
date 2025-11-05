@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-      - ./shared:/usr/src/app/shared
+      - /mnt/1EXT8T/HOME/janick.koder/DevContainer_Share/educiDev:/usr/src/app/shared
     ports:
       - "5173:5173"
     command: npm run dev
